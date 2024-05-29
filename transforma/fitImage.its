@@ -1,0 +1,553 @@
+/dts-v1/;
+
+/ {
+        description = "Kernel fitImage for VIA Intelligent Solutions Layer/5.15.42+gitAUTOINC+4a117f882a/transforma";
+        #address-cells = <1>;
+
+        images {
+                default = "bootscr-boot.script";
+                bootscr-boot.script {
+                        description = "U-boot script";
+                        data = /incbin/("boot.script");
+                        type = "script";
+                        arch = "arm64";
+                        compression = "none";
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                kernel-1 {
+                        description = "Linux kernel";
+                        data = /incbin/("../arch/arm64/boot/Image.gz");
+                        type = "kernel";
+                        arch = "arm64";
+                        os = "linux";
+                        compression = "gzip";
+                        load = <0x64000000>;
+                        entry = <0x64000000>;
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                fdt-mediatek_transforma.dtb {
+                        description = "Flattened Device Tree blob";
+                        data = /incbin/("../arch/arm64/boot/dts/mediatek/transforma.dtb");
+                        type = "flat_dt";
+                        arch = "arm64";
+                        compression = "none";
+                        load = <0x44000000>;
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                fdt-apusys.dtbo {
+                        description = "Flattened Device Tree blob";
+                        data = /incbin/("../arch/arm64/boot/dts/mediatek/transforma/apusys.dtbo");
+                        type = "flat_dt";
+                        arch = "arm64";
+                        compression = "none";
+                        load = <0x44c00000>;
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                fdt-display-dp.dtbo {
+                        description = "Flattened Device Tree blob";
+                        data = /incbin/("../arch/arm64/boot/dts/mediatek/transforma/display-dp.dtbo");
+                        type = "flat_dt";
+                        arch = "arm64";
+                        compression = "none";
+                        load = <0x44c00000>;
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                fdt-display-dp-hdmi.dtbo {
+                        description = "Flattened Device Tree blob";
+                        data = /incbin/("../arch/arm64/boot/dts/mediatek/transforma/display-dp-hdmi.dtbo");
+                        type = "flat_dt";
+                        arch = "arm64";
+                        compression = "none";
+                        load = <0x44c00000>;
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                fdt-display-dsi-dp.dtbo {
+                        description = "Flattened Device Tree blob";
+                        data = /incbin/("../arch/arm64/boot/dts/mediatek/transforma/display-dsi-dp.dtbo");
+                        type = "flat_dt";
+                        arch = "arm64";
+                        compression = "none";
+                        load = <0x44c00000>;
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                fdt-display-dsi.dtbo {
+                        description = "Flattened Device Tree blob";
+                        data = /incbin/("../arch/arm64/boot/dts/mediatek/transforma/display-dsi.dtbo");
+                        type = "flat_dt";
+                        arch = "arm64";
+                        compression = "none";
+                        load = <0x44c00000>;
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                fdt-display-dsi-hdmi.dtbo {
+                        description = "Flattened Device Tree blob";
+                        data = /incbin/("../arch/arm64/boot/dts/mediatek/transforma/display-dsi-hdmi.dtbo");
+                        type = "flat_dt";
+                        arch = "arm64";
+                        compression = "none";
+                        load = <0x44c00000>;
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                fdt-display-hdmi.dtbo {
+                        description = "Flattened Device Tree blob";
+                        data = /incbin/("../arch/arm64/boot/dts/mediatek/transforma/display-hdmi.dtbo");
+                        type = "flat_dt";
+                        arch = "arm64";
+                        compression = "none";
+                        load = <0x44c00000>;
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                fdt-gpu-mali.dtbo {
+                        description = "Flattened Device Tree blob";
+                        data = /incbin/("../arch/arm64/boot/dts/mediatek/transforma/gpu-mali.dtbo");
+                        type = "flat_dt";
+                        arch = "arm64";
+                        compression = "none";
+                        load = <0x44c00000>;
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                fdt-rpi-sense.dtbo {
+                        description = "Flattened Device Tree blob";
+                        data = /incbin/("../arch/arm64/boot/dts/mediatek/transforma/rpi-sense.dtbo");
+                        type = "flat_dt";
+                        arch = "arm64";
+                        compression = "none";
+                        load = <0x44c00000>;
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                fdt-video.dtbo {
+                        description = "Flattened Device Tree blob";
+                        data = /incbin/("../arch/arm64/boot/dts/mediatek/transforma/video.dtbo");
+                        type = "flat_dt";
+                        arch = "arm64";
+                        compression = "none";
+                        load = <0x44c00000>;
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+	};
+
+        configurations {
+                default = "conf-mediatek_transforma.dtb";
+                conf-mediatek_transforma.dtb {
+                        description = "1 Linux kernel, FDT blob, u-boot script";
+                        kernel = "kernel-1";
+                        fdt = "fdt-mediatek_transforma.dtb";
+                        
+                        bootscr = "bootscr-boot.script";
+                        
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                
+                conf-apusys.dtbo {
+                        description = "0 FDT blob, u-boot script";
+                        
+                        fdt = "fdt-apusys.dtbo";
+                        
+                        bootscr = "bootscr-boot.script";
+                        
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                
+                conf-camera-ar0430-ap1302-csi0.dtbo {
+                        description = "0 FDT blob, u-boot script";
+                        
+                        fdt = "fdt-camera-ar0430-ap1302-csi0.dtbo";
+                        
+                        bootscr = "bootscr-boot.script";
+                        
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                
+                conf-camera-ar0430-ap1302-csi0-std.dtbo {
+                        description = "0 FDT blob, u-boot script";
+                        
+                        fdt = "fdt-camera-ar0430-ap1302-csi0-std.dtbo";
+                        
+                        bootscr = "bootscr-boot.script";
+                        
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                
+                conf-camera-ar0430-ap1302-csi1.dtbo {
+                        description = "0 FDT blob, u-boot script";
+                        
+                        fdt = "fdt-camera-ar0430-ap1302-csi1.dtbo";
+                        
+                        bootscr = "bootscr-boot.script";
+                        
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                
+                conf-camera-ar0830-ap1302-2lanes-csi0.dtbo {
+                        description = "0 FDT blob, u-boot script";
+                        
+                        fdt = "fdt-camera-ar0830-ap1302-2lanes-csi0.dtbo";
+                        
+                        bootscr = "bootscr-boot.script";
+                        
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                
+                conf-camera-ar0830-ap1302-csi0.dtbo {
+                        description = "0 FDT blob, u-boot script";
+                        
+                        fdt = "fdt-camera-ar0830-ap1302-csi0.dtbo";
+                        
+                        bootscr = "bootscr-boot.script";
+                        
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                
+                conf-camera-ar0830-ap1302-csi0-it6510-csi1-std.dtbo {
+                        description = "0 FDT blob, u-boot script";
+                        
+                        fdt = "fdt-camera-ar0830-ap1302-csi0-it6510-csi1-std.dtbo";
+                        
+                        bootscr = "bootscr-boot.script";
+                        
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                
+                conf-camera-ar0830-ap1302-csi0-std.dtbo {
+                        description = "0 FDT blob, u-boot script";
+                        
+                        fdt = "fdt-camera-ar0830-ap1302-csi0-std.dtbo";
+                        
+                        bootscr = "bootscr-boot.script";
+                        
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                
+                conf-camera-ar0830-ap1302-csi1.dtbo {
+                        description = "0 FDT blob, u-boot script";
+                        
+                        fdt = "fdt-camera-ar0830-ap1302-csi1.dtbo";
+                        
+                        bootscr = "bootscr-boot.script";
+                        
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                
+                conf-camera-ar0830-ap1302-dual-std.dtbo {
+                        description = "0 FDT blob, u-boot script";
+                        
+                        fdt = "fdt-camera-ar0830-ap1302-dual-std.dtbo";
+                        
+                        bootscr = "bootscr-boot.script";
+                        
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                
+                conf-camera-it6510-csi0-std.dtbo {
+                        description = "0 FDT blob, u-boot script";
+                        
+                        fdt = "fdt-camera-it6510-csi0-std.dtbo";
+                        
+                        bootscr = "bootscr-boot.script";
+                        
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                
+                conf-camera-it6510-dual-std.dtbo {
+                        description = "0 FDT blob, u-boot script";
+                        
+                        fdt = "fdt-camera-it6510-dual-std.dtbo";
+                        
+                        bootscr = "bootscr-boot.script";
+                        
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                
+                conf-display-dp.dtbo {
+                        description = "0 FDT blob, u-boot script";
+                        
+                        fdt = "fdt-display-dp.dtbo";
+                        
+                        bootscr = "bootscr-boot.script";
+                        
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                
+                conf-display-dp-hdmi.dtbo {
+                        description = "0 FDT blob, u-boot script";
+                        
+                        fdt = "fdt-display-dp-hdmi.dtbo";
+                        
+                        bootscr = "bootscr-boot.script";
+                        
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                
+                conf-display-dsi2lvds.dtbo {
+                        description = "0 FDT blob, u-boot script";
+                        
+                        fdt = "fdt-display-dsi2lvds.dtbo";
+                        
+                        bootscr = "bootscr-boot.script";
+                        
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                
+                conf-display-dsi-dp.dtbo {
+                        description = "0 FDT blob, u-boot script";
+                        
+                        fdt = "fdt-display-dsi-dp.dtbo";
+                        
+                        bootscr = "bootscr-boot.script";
+                        
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                
+                conf-display-dsidp.dtbo {
+                        description = "0 FDT blob, u-boot script";
+                        
+                        fdt = "fdt-display-dsidp.dtbo";
+                        
+                        bootscr = "bootscr-boot.script";
+                        
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                
+                conf-display-dsi.dtbo {
+                        description = "0 FDT blob, u-boot script";
+                        
+                        fdt = "fdt-display-dsi.dtbo";
+                        
+                        bootscr = "bootscr-boot.script";
+                        
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                
+                conf-display-dsiedp.dtbo {
+                        description = "0 FDT blob, u-boot script";
+                        
+                        fdt = "fdt-display-dsiedp.dtbo";
+                        
+                        bootscr = "bootscr-boot.script";
+                        
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                
+                conf-display-dsi-hdmi.dtbo {
+                        description = "0 FDT blob, u-boot script";
+                        
+                        fdt = "fdt-display-dsi-hdmi.dtbo";
+                        
+                        bootscr = "bootscr-boot.script";
+                        
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                
+                conf-display-edpdp.dtbo {
+                        description = "0 FDT blob, u-boot script";
+                        
+                        fdt = "fdt-display-edpdp.dtbo";
+                        
+                        bootscr = "bootscr-boot.script";
+                        
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                
+                conf-display-edp.dtbo {
+                        description = "0 FDT blob, u-boot script";
+                        
+                        fdt = "fdt-display-edp.dtbo";
+                        
+                        bootscr = "bootscr-boot.script";
+                        
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                
+                conf-display-edphdmi.dtbo {
+                        description = "0 FDT blob, u-boot script";
+                        
+                        fdt = "fdt-display-edphdmi.dtbo";
+                        
+                        bootscr = "bootscr-boot.script";
+                        
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                
+                conf-display-hdmidp.dtbo {
+                        description = "0 FDT blob, u-boot script";
+                        
+                        fdt = "fdt-display-hdmidp.dtbo";
+                        
+                        bootscr = "bootscr-boot.script";
+                        
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                
+                conf-display-hdmi.dtbo {
+                        description = "0 FDT blob, u-boot script";
+                        
+                        fdt = "fdt-display-hdmi.dtbo";
+                        
+                        bootscr = "bootscr-boot.script";
+                        
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                
+                conf-display-headless.dtbo {
+                        description = "0 FDT blob, u-boot script";
+                        
+                        fdt = "fdt-display-headless.dtbo";
+                        
+                        bootscr = "bootscr-boot.script";
+                        
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                
+                conf-display-lvdsdp.dtbo {
+                        description = "0 FDT blob, u-boot script";
+                        
+                        fdt = "fdt-display-lvdsdp.dtbo";
+                        
+                        bootscr = "bootscr-boot.script";
+                        
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                
+                conf-display-lvdsedp.dtbo {
+                        description = "0 FDT blob, u-boot script";
+                        
+                        fdt = "fdt-display-lvdsedp.dtbo";
+                        
+                        bootscr = "bootscr-boot.script";
+                        
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                
+                conf-display-lvdshdmi.dtbo {
+                        description = "0 FDT blob, u-boot script";
+                        
+                        fdt = "fdt-display-lvdshdmi.dtbo";
+                        
+                        bootscr = "bootscr-boot.script";
+                        
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                
+                conf-gpu-mali.dtbo {
+                        description = "0 FDT blob, u-boot script";
+                        
+                        fdt = "fdt-gpu-mali.dtbo";
+                        
+                        bootscr = "bootscr-boot.script";
+                        
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                
+                conf-rpi-sense.dtbo {
+                        description = "0 FDT blob, u-boot script";
+                        
+                        fdt = "fdt-rpi-sense.dtbo";
+                        
+                        bootscr = "bootscr-boot.script";
+                        
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                
+                conf-video.dtbo {
+                        description = "0 FDT blob, u-boot script";
+                        
+                        fdt = "fdt-video.dtbo";
+                        
+                        bootscr = "bootscr-boot.script";
+                        
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+	};
+};

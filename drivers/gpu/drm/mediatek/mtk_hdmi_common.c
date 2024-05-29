@@ -183,6 +183,7 @@ struct edid *mtk_hdmi_bridge_get_edid(struct drm_bridge *bridge,
 		return NULL;
 
 	mtk_hdmi_show_EDID_raw_data(hdmi, edid);
+	hdmi->dvi_mode = !drm_detect_hdmi_monitor(edid);
 
 	memcpy(hdmi->conn.eld, connector->eld, drm_eld_size(connector->eld));
 
